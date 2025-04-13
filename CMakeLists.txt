@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 set(CMAKE_C_COMPILER "$ENV{GCC_COMPILER}-gcc")
 set(CMAKE_CXX_COMPILER "$ENV{GCC_COMPILER}-g++")
 
-project(HelloYolov8)
+project(YoloBindings)
 
 add_definitions(-DRV1106_1103)
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/ 3rdparty.out)
@@ -24,9 +24,6 @@ include_directories(${OpenCV_INCLUDE_DIRS} )
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
 
-# add_executable(${PROJECT_NAME}
-#     ${SRCS}
-# )
 
 add_library(${PROJECT_NAME} SHARED ${SRCS})
 
