@@ -9,11 +9,6 @@
 #include <chrono>
 
 #define MODEL_INPUT_SIZE 640
-#define CAMERA_DEV 11
-
-cv::Scalar classColorMap[2] = {cv::Scalar(255, 255, 0),
-                               cv::Scalar(0, 255, 0)};
-
 
 rknn_app_context_t rknn_app_ctx;
 int ret = 0;
@@ -24,7 +19,7 @@ extern "C"
 
     int init(const char *model_path, int input_size){
         memset(&rknn_app_ctx, 0, sizeof(rknn_app_context_t));
-        init_post_process();
+        // init_post_process();
         ret = init_yolov8_model(model_path, &rknn_app_ctx);
         if (ret != 0) { 
             printf("init_yolov8_model fail! ret=%d model_path=%s\n", ret, model_path);
@@ -36,7 +31,7 @@ extern "C"
     }
 
     int release(){
-        deinit_post_process();
+        // deinit_post_process();
         return release_yolov8_model(&rknn_app_ctx);
     }
 
