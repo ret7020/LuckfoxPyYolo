@@ -23,9 +23,7 @@
 
 #include <set>
 #include <vector>
-// #define LABEL_NALE_TXT_PATH "./model/labels.txt"
 
-// static char *labels[OBJ_CLASS_NUM];
 
 inline static int clamp(float val, int min, int max) { return val > min ? (val < max ? val : max) : min; }
 
@@ -654,43 +652,3 @@ int post_process(rknn_app_context_t *app_ctx, void *outputs, float conf_threshol
     od_results->count = last_count;
     return 0;
 }
-
-// int init_post_process()
-// {
-//     int ret = 0;
-//     ret = loadLabelName(LABEL_NALE_TXT_PATH, labels);
-//     if (ret < 0)
-//     {
-//         printf("Load %s failed!\n", LABEL_NALE_TXT_PATH);
-//         return -1;
-//     }
-//     return 0;
-// }
-
-// char *coco_cls_to_name(int cls_id)
-// {
-
-//     if (cls_id >= OBJ_CLASS_NUM)
-//     {
-//         return "null";
-//     }
-
-//     if (labels[cls_id])
-//     {
-//         return labels[cls_id];
-//     }
-
-//     return "null";
-// }
-
-// void deinit_post_process()
-// {
-//     for (int i = 0; i < OBJ_CLASS_NUM; i++)
-//     {
-//         if (labels[i] != nullptr)
-//         {
-//             free(labels[i]);
-//             labels[i] = nullptr;
-//         }
-//     }
-// }
