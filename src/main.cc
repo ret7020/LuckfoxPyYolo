@@ -13,6 +13,7 @@ rknn_app_context_t rknn_app_ctx;
 int ret = 0;
 int model_input_size = 640;
 cv::Mat bgr640;
+cv::VideoCapture cap;
 
 extern "C"
 {
@@ -32,9 +33,26 @@ extern "C"
         return ret;
     }
 
+    void camera_init(int camera_ind){
+        cap.set(cv::CAP_PROP_FRAME_WIDTH, model_input_size);
+        cap.set(cv::CAP_PROP_FRAME_HEIGHT, model_input_size);
+        cap.open(0);
+
+        // Warmup
+        cv::Mat bgr;
+        for (int i = 0; i < 5; i++){cap >> bgr;}
+    }
+
     int release()
     {
+        cap.release();
         return release_yolov8_model(&rknn_app_ctx);
+    }
+
+    void read_image_camera(){
+        cv::Mat bgr;
+        cap >> bgr;
+        cv::resize(bgr, bgr640, cv::Size(model_input_size, model_input_size), 0, 0, cv::INTER_LINEAR);
     }
 
     void read_image_file(const char *image_path)

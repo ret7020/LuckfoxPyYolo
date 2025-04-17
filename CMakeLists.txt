@@ -17,9 +17,9 @@ set(CMAKE_CXX_FLAGS "-fPIC")
 file(GLOB SRCS ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
 
 #Opencv 4 
-set(OpenCV_DIR "${CMAKE_CURRENT_SOURCE_DIR}/lib/cmake/opencv4")
+set(OpenCV_DIR "${CMAKE_CURRENT_SOURCE_DIR}/opencv_mobile_lib/opencv-mobile-4.11.0-luckfox-pico/lib/cmake/opencv4")
 find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS} )
+include_directories(${OpenCV_INCLUDE_DIRS})
 
 set(THREADS_PREFER_PTHREAD_FLAG ON)
 find_package(Threads REQUIRED)
